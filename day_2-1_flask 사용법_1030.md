@@ -4,6 +4,8 @@
 
 `import flask`
 
+app = Flask(__name__)
+
 그 다음은 여러 가지 경우의 수를 나눠서 
 
 - ##### 기본함수로 return하기(@app.route("/~~/") )
@@ -173,14 +175,29 @@ img는 닫는 태그가 없어요 더 자세한 내용은 w3school 홈페이지�
 이건 input을 받기 위한 경로와 미션을 추천해주기 위한 output경로를 작성한 python코드입니다. 
 
 ```python
-
+@app.route("/chucheon")
+def doitdoit():
+    today_missions = ["반팔, 반바지 입고 아이스크림먹기","빨래집게 꼽고 다니기","얼굴낙서하고 편의점 가기"
+                        , "머리 삭발하기", "딱밤맞고 머리박살나기"]
+    today_mission_picture = {"반팔, 반바지 입고 아이스크림먹기":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvbQj5ExCzDcWWuxSOE4lq2FohyvJR9rlD3NY_6bGywyFieNkV",
+                             "빨래집게 꼽고 다니기":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdJZOpo0CLhdIvqY6B-MwMeEfwrkOPZ1Ld2fPaxGMCVoOeRmlL",
+                             "얼굴낙서하고 편의점 가기":"https://i.ytimg.com/vi/ZZymJ5f2Vuc/maxresdefault.jpg",
+                             "머리 삭발하기":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsiwdUnOG_IUQAx81nDtRZ59R1lhyB_ucD3jI-ZXH-I6yZ2oPp",
+                             "딱밤맞고 머리박살나기":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPhDffdK76YBgu7L8DSJZ3gtHJSfRFezo8HuD1PVK67DoLBeKK"}
+    today_mission = random.choice(today_missions)
+    mission_picture = today_mission_picture[today_mission]
+    user_name = request.args.get("name")
+    return render_template("chucheon.html",user_name = user_name,today_mission= today_mission, mission_picture = mission_picture )
+    
 ```
 
 심심하신 분들은 밑에 가서 한번 해보세요
 
 (위에 보고 예상하셨겠지만 엄청 재미없어요 ㅎㅎ)
 
-[오늘의미션]("http://ubuntuuu-jackpot2.c9users.io:8080/dododo")
+[오늘의미션](http://ubuntuuu-jackpot2.c9users.io:8080/dododo)
+
+
 
 
 
